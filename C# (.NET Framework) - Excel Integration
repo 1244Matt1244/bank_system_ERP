@@ -1,0 +1,28 @@
+using OfficeOpenXml;
+using System.IO;
+
+namespace BankIntegration.ExcelIntegration
+{
+    public class ExcelService
+    {
+        public void ExportTransactionsToExcel(List<Transaction> transactions, string filePath)
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Transactions");
+                worksheet.Cells["A1"].LoadFromCollection(transactions, true);
+                package.SaveAs(new FileInfo(filePath));
+            }
+        }
+
+        public void ExportCustomersToExcel(List<Customer> customers, string filePath)
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Workbook.Worksheets.Add("Customers");
+                worksheet.Cells["A1"].LoadFromCollection(customers, true);
+                package.SaveAs(new FileInfo(filePath));
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BankIntegration.DataAccessLayer
+{
+    public class TransactionRepository
+    {
+        private readonly BankDbContext _context;
+
+        public TransactionRepository(BankDbContext context)
+        {
+            _context = context;
+        }
+
+        public List<Transaction> GetTransactions()
+        {
+            return _context.Transactions.ToList();
+        }
+
+        // Other methods for data operations
+    }
+
+    public class CustomerRepository
+    {
+        private readonly BankDbContext _context;
+
+        public CustomerRepository(BankDbContext context)
+        {
+            _context = context;
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            return _context.Customers.ToList();
+        }
+
+        // Other methods for data operations
+    }
+}

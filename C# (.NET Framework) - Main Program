@@ -1,0 +1,25 @@
+using System;
+using BankIntegration.DataAccessLayer;
+using BankIntegration.ExcelIntegration;
+
+namespace BankIntegration
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var context = new BankDbContext())
+            {
+                var transactionRepository = new TransactionRepository(context);
+                var customerRepository = new CustomerRepository(context);
+
+                var transactions = transactionRepository.GetTransactions();
+                var customers = customerRepository.GetCustomers();
+
+                var excelService = new ExcelService();
+                excelService.ExportTransactionsToExcel(transactions, "Transactions.xlsx");
+                excelService.ExportCustomersToExcel(customers, "Customers.xlsx");
+            }
+        }
+    }
+}

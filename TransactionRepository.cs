@@ -1,20 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BankIntegration.DataAccessLayer
+public class TransactionRepository : GenericRepository<Transaction>
 {
-    public class TransactionRepository
+    public TransactionRepository(BankSystemContext context) : base(context)
     {
-        private readonly BankDbContext _context;
-
-        public TransactionRepository(BankDbContext context)
-        {
-            _context = context;
-        }
-
-        public List<Transaction> GetTransactions()
-        {
-            return _context.Transactions.ToList();
-        }
     }
+
+    // Add any custom transaction-related methods here
 }

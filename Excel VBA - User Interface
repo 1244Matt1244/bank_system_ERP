@@ -1,14 +1,9 @@
-Sub LoadBankData()
-    Dim transactionWorkbook As Workbook
-    Set transactionWorkbook = Workbooks.Open("Transactions.xlsx")
+Private Sub CommandButton1_Click()
+    ' Call the export function
+    Call ExportCustomers
+End Sub
 
-    Dim customerWorkbook As Workbook
-    Set customerWorkbook = Workbooks.Open("Customers.xlsx")
-
-    ' Copy data to the current workbook
-    transactionWorkbook.Sheets(1).UsedRange.Copy Destination:=ThisWorkbook.Sheets("Transactions").Range("A1")
-    customerWorkbook.Sheets(1).UsedRange.Copy Destination:=ThisWorkbook.Sheets("Customers").Range("A1")
-
-    transactionWorkbook.Close
-    customerWorkbook.Close
+Private Sub Workbook_Open()
+    ' Initialize settings when the workbook opens
+    MsgBox "Welcome to the Bank System ERP!", vbInformation
 End Sub

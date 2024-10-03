@@ -1,4 +1,24 @@
-BankIntegration.xlsm
-    Sheet1: Transactions
-    Sheet2: Customers
-    Module1: (contains LoadBankData subroutine)
+Sub ExportCustomers()
+    On Error GoTo ErrHandler
+
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Customers")
+
+    Dim lastRow As Long
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+
+    For i = 2 To lastRow
+        ' Fetch customer data
+        Dim customerId As Integer
+        customerId = ws.Cells(i, 1).Value
+        
+        ' Implement logic to fetch and export customer data
+    Next i
+
+    MsgBox "Export complete!", vbInformation
+
+Exit Sub
+
+ErrHandler:
+    MsgBox "Error occurred: " & Err.Description, vbCritical
+End Sub
